@@ -80,8 +80,8 @@ app.get("/update" + process.env.UPDATE_PATH, (request, response) => {
     }
 
     const filteredTweets = _.uniqBy(receivedTweets, tweet => tweet.id);
-    
-    console.log(filteredTweets.length)
+
+    console.log(filteredTweets.length);
 
     db.set("tweets", filteredTweets).write();
   });
@@ -93,13 +93,3 @@ app.get("/update" + process.env.UPDATE_PATH, (request, response) => {
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
-
-function renderer() {
-  return new Writable({
-    objectMode: true,
-    write: (data, _, done) => {
-      console.log("<-", data);
-      done();
-    }
-  });
-}
